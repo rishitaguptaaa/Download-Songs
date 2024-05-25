@@ -12,11 +12,18 @@ youtube = googleapiclient.discovery.build('youtube', 'v3', developerKey=api_key)
 
 def download_song_by_link(yt_link):
     
+    # Set up Chrome options for headless mode
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    
     # Create a new instance of the Chrome driver
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(options=options)
 
     # Navigate to the website
     driver.get("https://ytmp3s.nu/evvr/")
+
+    # Display the page source of the webpage
+    st.write(driver.page_source)
 
     # Find the input tag with id='url'
     input_tag = driver.find_element(By.ID, "url")
@@ -29,7 +36,7 @@ def download_song_by_link(yt_link):
     down=driver.find_element(By.XPATH,'/html/body/form/div[2]/a[1]')
     down.click()
 
-    time.sleep(150)
+    time.sleep(200)
     driver.quit()
 
 
