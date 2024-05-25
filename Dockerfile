@@ -1,3 +1,5 @@
+FROM python:3.9-slim
+
 FROM streamlit/streamlit:latest
 
 # Install Chromium and Chromium driver
