@@ -1,1 +1,2 @@
-pipreqs /path/to/your/app/folder
+google-api-python-client
+selenium
