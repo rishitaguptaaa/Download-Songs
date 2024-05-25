@@ -1,1 +1,1 @@
-google-api-python-client
+pipreqs /path/to/your/app/folder
