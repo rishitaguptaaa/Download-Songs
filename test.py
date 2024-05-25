@@ -3,21 +3,23 @@ import googleapiclient.discovery
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
-
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 # Set up API credentials
 api_key = 'AIzaSyAp1ItuVi_KDcuYhfeq0WLGeGud4Thc9eU'
 youtube = googleapiclient.discovery.build('youtube', 'v3', developerKey=api_key)
 
+@st.experimental_singleton
+def get_driver():
+    options = Options()
+    options.add_argument('--headless')
+    return webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
 def download_song_by_link(yt_link):
     
-    # Set up Chrome options for headless mode
-    options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    
-    # Create a new instance of the Chrome driver
-    driver = webdriver.Chrome(options=options)
+    driver = get_driver()
 
     # Navigate to the website
     driver.get("https://ytmp3s.nu/evvr/")
