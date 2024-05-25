@@ -33,6 +33,8 @@ def download_song_by_link(yt_link):
     sub=driver.find_element(By.XPATH,'/html/body/form/div[2]/input[2]')
     sub.click()
 
+    time.sleep(15)
+    
     down=driver.find_element(By.XPATH,'/html/body/form/div[2]/a[1]')
     down.click()
 
